@@ -3976,7 +3976,9 @@ __declspec(dllexport) int ZZGUI(HWND hWnd, HINSTANCE hInstance, LPSTR lpszCmdLin
         if (bAllocConsole)
         {
             FILE* conout;
-            AllocConsole();
+            if (!AttachConsole(ATTACH_PARENT_PROCESS)) {
+                AllocConsole();
+            }
             freopen_s(
                 &conout,
                 "CONOUT$",
